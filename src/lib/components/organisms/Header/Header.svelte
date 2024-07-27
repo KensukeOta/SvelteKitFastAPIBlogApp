@@ -1,5 +1,6 @@
 <script lang="ts">
-
+  import { page } from "$app/stores";
+	import { SignOut } from "@auth/sveltekit/components";
 </script>
 
 <header class="flex justify-between items-center border-b relative">
@@ -23,7 +24,20 @@
   </button>
 
   <nav class="leading-9">
-    <a href="/signup" class="inline-block">新規登録</a>
-    <a href="/login" class="inline-block">ログイン</a>
+    {#if !$page.data.session?.user}
+      <a href="/signup" class="inline-block">新規登録</a>
+      <a href="/login" class="inline-block">ログイン</a>
+    {:else}
+      <SignOut 
+        signOutPage="logout"
+        options={{
+        redirectTo: $page.data.redirectTo
+          ? `/${decodeURIComponent($page.data.redirectTo).slice(1)}`
+          : `/login`,
+        }}
+      >
+        <span slot="submitButton">ログアウト</span>
+      </SignOut>
+    {/if}
   </nav>
 </header>
