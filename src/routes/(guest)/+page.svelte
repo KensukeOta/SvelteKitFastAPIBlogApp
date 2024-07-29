@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/stores";
+	import DefaultLayout from "$lib/components/templates/DefaultLayout/DefaultLayout.svelte";
 	
 	let word = $state("Hello World!");
 </script>
@@ -8,5 +9,7 @@
 	<title>SvelteFastAPIBlogApp</title>
 </svelte:head>
 
-<h1>{word}</h1>
-<p>Welcome {$page.data.session?.user ? $page.data.session.user.name : "stranger"}</p>
+<DefaultLayout className="py-6">
+	<h1>{word}</h1>
+	<p>Welcome {$page.data.session?.user ? $page.data.session.user.name : "stranger"}</p>
+</DefaultLayout>
