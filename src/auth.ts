@@ -10,6 +10,28 @@ export const { handle, signIn, signOut } = SvelteKitAuth({
   ],
 
   callbacks: {
+    jwt({ token, user, account }) {
+      if (user) {
+        token.email = user.email
+        token.provider = account?.provider
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      try {
+        const res = await fetch(`${API_URL}/v1/users?email=${token.email}&provider=${token.provider}`, {
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await res.json();
+        session.user.id = data.id;
+      } catch (error) {
+        console.log(error);
+      }
+      return session;
+    },
     async signIn({ user, account }) {
       const name = user.name;
       const email = user.email;
