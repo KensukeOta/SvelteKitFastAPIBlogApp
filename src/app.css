@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+.signInButton,
+.signInButton button, 
 .logout button {
   width: 100%;
 }

@@ -8,7 +8,7 @@ export const load: PageServerLoad = async (event) => {
   const { session } = await event.parent();
 
   if (session) {
-    throw redirect(303, '/');
+    redirect(303, '/');
   }
 
   return {
