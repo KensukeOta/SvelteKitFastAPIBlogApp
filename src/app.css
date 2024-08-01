@@ -7,3 +7,11 @@
 .logout button {
   width: 100%;
 }
+
+.markdown-body ol {
+  list-style: decimal;
+}
+
+.markdown-body ul {
+  list-style: disc;
+}
