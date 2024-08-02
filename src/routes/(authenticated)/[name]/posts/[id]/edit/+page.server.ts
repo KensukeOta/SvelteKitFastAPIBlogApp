@@ -11,29 +11,50 @@ const schema = z.object({
   user_id: z.number(),
 });
 
-export const load: PageServerLoad = async (event) => {
-  const { session } = await event.parent();
-  const form = await superValidate(zod(schema));
+export const load: PageServerLoad = async ({ fetch, params, parent }) => {
+  const { session } = await parent();
+  let post;
+
+  try {
+    const res = await fetch(`${API_URL}/v1/posts/${params.id}`, {
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+    if (!res.ok) {
+      const errrors = await res.json();
+      console.log(errrors)
+      throw new Error(errrors)
+    }
+    post = await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+
+
+  const form = await superValidate(post, zod(schema));
 
   if (!session) {
-    redirect(307, "/login");
+    redirect(303, "/");
   }
 
   return {
     form,
+    post,
     session,
   };
 };
 
 export const actions = {
-  default: async ({ fetch, request }) => {
+  default: async ({ fetch, params, request }) => {
     const form = await superValidate(request, zod(schema));
     console.log(form);
 
     if (!form.valid) {
       return fail(400, { form });
     }
-    
+
     const title = form.data.title
     const body = form.data.body
     const user_id = form.data.user_id
@@ -41,8 +62,8 @@ export const actions = {
     let errors;
 
     try {
-      const res = await fetch(`${API_URL}/v1/posts`, {
-        method: "POST",
+      const res = await fetch(`${API_URL}/v1/posts/${params.id}`, {
+        method: "PATCH",
         headers: {
           "Accept": "application/json",
           "Content-Type": "application/json",
