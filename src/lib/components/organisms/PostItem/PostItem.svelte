@@ -2,7 +2,7 @@
 	import type { Post } from "$lib/types/Post";
 	import { page } from "$app/stores";
 	import PostEditLinkButton from "$lib/components/atoms/PostEditLinkButton/PostEditLinkButton.svelte";
-	import PostDeleteButton from "$lib/components/atoms/DeleteButton/PostDeleteButton.svelte";
+	import PostDeleteButton from "$lib/components/atoms/PostDeleteButton/PostDeleteButton.svelte";
 
 	let { post }: { post: Post } = $props();
 </script>
