@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>ログインフォーム | SvelteFastAPIBlogApp</title>
+	<title>ログインフォーム | SvelteKitFastAPIBlogApp</title>
 </svelte:head>
 
 <DefaultLayout className="py-4">

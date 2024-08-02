@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>SvelteFastAPIBlogApp</title>
+	<title>SvelteKitFastAPIBlogApp</title>
 </svelte:head>
 
 <DefaultLayout className="py-6">

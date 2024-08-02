@@ -13,7 +13,7 @@
 </script>
 
 <svelte:head>
-  <title>記事投稿フォーム | SvelteFastAPIBlogApp</title>
+  <title>記事投稿フォーム | SvelteKitFastAPIBlogApp</title>
 </svelte:head>
 
 <DefaultLayout className="py-3">
