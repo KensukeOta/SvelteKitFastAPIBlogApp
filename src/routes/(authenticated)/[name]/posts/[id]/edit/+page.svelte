@@ -64,7 +64,7 @@
       </div>
     </div>
 
-    <input type="hidden" name="user_id" id="user_id" value={data.post.user_id} />
+    <input type="hidden" name="user_id" id="user_id" value={$form.user_id} />
     <div id="user-id-error" aria-live="polite" aria-atomic="true">
       {#if $errors.user_id}
         <p class="text-red-500">
@@ -73,6 +73,6 @@
       {/if}
     </div>
 
-    <button type="submit" disabled={$submitting} class="w-full p-2 mt-2 bg-black text-white hover:opacity-70">投稿する</button>
+    <button type="submit" disabled={$submitting} class="w-full p-2 mt-2 bg-black text-white hover:opacity-70">更新する</button>
   </form>
 </DefaultLayout>
