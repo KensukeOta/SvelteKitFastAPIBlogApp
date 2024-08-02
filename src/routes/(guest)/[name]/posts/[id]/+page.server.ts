@@ -1,5 +1,6 @@
 import type { PageServerLoad } from "./$types";
 import { API_URL } from "$env/static/private";
+import { redirect } from "@sveltejs/kit";
 
 export const load: PageServerLoad = async ({ fetch, params, parent }) => {
   const { session } = await parent();
@@ -20,6 +21,10 @@ export const load: PageServerLoad = async ({ fetch, params, parent }) => {
     post = await res.json();
   } catch (error) {
     console.log(error);
+  }
+
+  if (params.name !== post.user.name) {
+    redirect(303, "/");
   }
 
   return {
