@@ -36,7 +36,7 @@ export const load: PageServerLoad = async ({ fetch, params, parent }) => {
 
   const form = await superValidate(post, zod(schema));
 
-  if (!session || session.user?.id !== post.user.id || post.user.name !== params.name) {
+  if (!session || session.user?.id !== post.user_id || post.user.name !== params.name) {
     redirect(303, "/");
   }
 
