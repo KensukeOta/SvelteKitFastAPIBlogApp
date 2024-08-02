@@ -13,6 +13,7 @@ const schema = z.object({
 
 export const load: PageServerLoad = async ({ fetch, params, parent }) => {
   const { session } = await parent();
+
   let post;
 
   try {
@@ -35,7 +36,7 @@ export const load: PageServerLoad = async ({ fetch, params, parent }) => {
 
   const form = await superValidate(post, zod(schema));
 
-  if (!session) {
+  if (!session || session.user?.id !== post.user.id || post.user.name !== params.name) {
     redirect(303, "/");
   }
 
