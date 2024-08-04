@@ -19,6 +19,7 @@ SvelteKitを使用したブログアプリです。
 - その他言語: __Svelte5.0.0-next.206__, __TypeScript5.5.4__, __HTML/CSS__
 
 ## 機能
+- ユーザー登録機能
 - Googleログイン機能
 - GitHubログイン機能
 - 記事投稿機能
