@@ -16,6 +16,8 @@
 	<section class="mt-2">
 		{#each data.posts as post (post.id)}
 			<PostItem {post} />
+		{:else}
+			<p class="font-bold text-center">記事が投稿されていません</p>
 		{/each}
 	</section>
 </DefaultLayout>
