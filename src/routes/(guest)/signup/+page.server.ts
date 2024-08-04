@@ -34,6 +34,10 @@ export const load: PageServerLoad = async (event) => {
   const { session } = await event.parent();
   const form = await superValidate(zod(schema));
 
+  if (session) {
+    redirect(303, "/");
+  }
+
   return {
     form,
     session,
