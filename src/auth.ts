@@ -56,7 +56,7 @@ export const { handle, signIn, signOut } = SvelteKitAuth({
     },
     async session({ session, token }) {
       try {
-        const res = await fetch(`${API_URL}/v1/users?email=${token.email}&provider=${token.provider}`, {
+        const res = await fetch(`${API_URL}/v1/users?email=${encodeURIComponent(token.email as string)}&provider=${encodeURIComponent(token.provider as string)}`, {
           headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
