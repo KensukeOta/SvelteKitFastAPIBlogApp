@@ -12,6 +12,7 @@
 
 <DefaultLayout className="py-6">
 	<p>Welcome {$page.data.session?.user ? $page.data.session.user.name : "stranger"}</p>
+	hoge
 
 	<section class="mt-2">
 		{#each data.posts as post (post.id)}
